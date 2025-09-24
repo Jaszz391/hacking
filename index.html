@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deface, Hacking & Cybersecurity — Panduan Lengkap (Edukasi)</title>
+  <style>
+    :root{--bg:#060712;--card:rgba(255,255,255,0.03);--accent1:#33f0ff;--accent2:#9b6bff;--safe:#6bff9b}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;background:linear-gradient(120deg,#02020a 0%, var(--bg) 60%);color:#d7e7ff}
+    .wrap{max-width:1100px;margin:28px auto;padding:26px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow: 0 12px 40px rgba(2,6,23,0.7)}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:76px;height:76px;border-radius:14px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:#031020;font-weight:800}
+    h1{margin:0;font-size:26px}
+    .lead{color:#b9d6ff;margin-top:4px}
+
+    .toc{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .tag{background:var(--card);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    .grid{display:grid;grid-template-columns: 2fr 1fr;gap:18px;margin-top:18px}
+    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03)}
+    h2{margin-top:0}
+    p.small{color:#b9d6ff}
+    ul{margin-left:18px}
+    pre{background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.5));padding:12px;border-radius:8px;overflow:auto;border:1px solid rgba(255,255,255,0.03);font-size:13px}
+
+    .muted{color:#9fb3dd}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{background:transparent;color:inherit;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+    footer{margin-top:16px;color:#94aee6;text-align:center;font-size:13px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">EDU</div>
+      <div>
+        <h1>Deface & Hacking — Panduan Lengkap (Edukasi)</h1>
+        <div class="lead">Pemahaman, risiko, mitigasi, respons insiden, dan jalur belajar etis — semua bersifat edukasi dan defensif.</div>
+        <div class="toc">
+          <div class="tag">Ringkasan</div>
+          <div class="tag">OWASP Top 10</div>
+          <div class="tag">Mitigasi</div>
+          <div class="tag">Deteksi</div>
+          <div class="tag">Incident Response</div>
+          <div class="tag">Etika & Legal</div>
+          <div class="tag">Belajar & Resources</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2>1. Apa itu Deface & konteksnya</h2>
+          <p class="muted">Deface: perubahan tampilan sebuah situs tanpa izin pemilik. Biasanya pelaku mengunggah halaman baru atau memodifikasi konten untuk menampilkan pesan, gambar, atau klaim akses. Deface adalah bentuk vandalism digital — sering bertujuan menunjukan akses, propaganda, atau sekadar iseng.</p>
+          <p class="muted">Deface termasuk kategori pelanggaran keamanan dan dapat berujung pada penyelidikan hukum.</p>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>2. Ringkasan vektor serangan (konseptual)</h2>
+          <p class="muted">Berikut vektor yang sering dimanfaatkan — DESKRIPSI saja, tanpa langkah eksploit.</p>
+          <ul>
+            <li><strong>SQL Injection</strong> — memasukkan input yang mengubah query database.</li>
+            <li><strong>Cross-Site Scripting (XSS)</strong> — injeksi skrip di halaman web yang dieksekusi browser pengguna.</li>
+            <li><strong>Remote File Inclusion / Upload</strong> — mengunggah atau menyertakan file berbahaya ke server.</li>
+            <li><strong>Brute force & credential stuffing</strong> — mencoba banyak password atau memakai kredensial bocor.</li>
+            <li><strong>Misconfiguration</strong> — panel admin default, direktori terbuka, atau plugin lama.</li>
+            <li><strong>Supply chain / plugin compromise</strong> — plugin/theme terkompromi di CMS populer.</li>
+          </ul>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>3. OWASP Top 10 — ringkasan (penting untuk web dev & defender)</h2>
+          <p class="muted">OWASP Top 10 adalah daftar ancaman web paling umum. Berikut ringkasan tiap item dan mitigasinya (tingkat tinggi).</p>
+          <table>
+            <thead><tr><th>Ancaman</th><th>Deskripsi singkat + mitigasi tingkat tinggi</th></tr></thead>
+            <tbody>
+              <tr><td>1. Injection (SQLi, OS, LDAP)</td><td>Input tidak tervalidasi mempengaruhi perintah. Mitigasi: gunakan parameterized queries, ORM, validasi input, principle of least privilege.</td></tr>
+              <tr><td>2. Broken Authentication</td><td>Autentikasi lemah memungkinkan pembajakan akun. Mitigasi: MFA, rate limiting, password policy, secure session management.</td></tr>
+              <tr><td>3. Sensitive Data Exposure</td><td>Data sensitif tersimpan/tertransmisi tanpa enkripsi. Mitigasi: TLS, enkripsi at-rest, minimalisasi penyimpanan data.</td></tr>
+              <tr><td>4. XML External Entities (XXE)</td><td>Parser XML tidak aman memproses entitas luar. Mitigasi: disable external entity resolution, gunakan parser modern.</td></tr>
+              <tr><td>5. Broken Access Control</td><td>Akses ke fungsi/objek tidak diautorisasi. Mitigasi: enforce server-side access checks, avoid client-side trust.</td></tr>
+              <tr><td>6. Security Misconfiguration</td><td>Default creds, debug enabled, stack traces. Mitigasi: hardening, remove dev configs, inventory & patching.</td></tr>
+              <tr><td>7. Cross-Site Scripting (XSS)</td><td>Input berbahaya yang dieksekusi di browser. Mitigasi: output encoding, Content Security Policy (CSP), sanitization.</td></tr>
+              <tr><td>8. Insecure Deserialization</td><td>Deserializing untrusted data dapat mengeksekusi kode. Mitigasi: hindari deserializing dari sumber tak tepercaya, gunakan signed formats.</td></tr>
+              <tr><td>9. Using Components with Known Vulnerabilities</td><td>Library/komponen lawas yang punya CVE. Mitigasi: dependency scanning, patch management, software bill of materials (SBOM).</td></tr>
+              <tr><td>10. Insufficient Logging & Monitoring</td><td>Kurangnya logging membuat incident detection terlambat. Mitigasi: comprehensive logging, SIEM, alerting, retention policy.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>4. Praktik Keamanan (Actionable untuk defender)</h2>
+          <p class="muted">Langkah yang bisa diimplementasikan tim devops / security:</p>
+          <ul>
+            <li><strong>Patch & update rutin</strong> pada OS, server, CMS, plugin.</li>
+            <li><strong>Least privilege</strong> pada database & file system.</li>
+            <li><strong>Input validation & output encoding</strong>—safe libraries dan frameworks.</li>
+            <li><strong>Use HTTPS everywhere</strong> dengan HSTS.</li>
+            <li><strong>Implement WAF & rate limiting</strong> untuk mengurangi eksposur serangan umum.</li>
+            <li><strong>Backup & disaster recovery plan</strong> yang diuji berkala.</li>
+            <li><strong>Automated dependency scanning</strong> (SCA) dan Vulnerability Management.</li>
+            <li><strong>Secure upload handling</strong>: simpan di storage terpisah, validasi tipe file, lakukan scanning.</li>
+          </ul>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>5. Deteksi & Monitoring</h2>
+          <p class="muted">Deteksi dini mencegah eskalasi. Beberapa hal penting:</p>
+          <ul>
+            <li>Centralized logging (syslog, ELK, Splunk, etc.)</li>
+            <li>Integrity monitoring (file change detection)</li>
+            <li>WAF & IDS/IPS logs</li>
+            <li>Alerting untuk: login anomali, perubahan file publik, spike traffic, perubahan DNS.</li>
+          </ul>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>6. Incident Response (IRC) — langkah ringkas</h2>
+          <p class="muted">Prosedur dasar untuk menanggapi deface atau kompromi:</p>
+          <ol>
+            <li><strong>Identifikasi</strong> — kumpulkan indikasi (timestamp, IP, logs).</li>
+            <li><strong>Isolasi</strong> — ambil offline bagian terkompromi jika perlu (tahan perubahan lebih lanjut).</li>
+            <li><strong>Eradikasi</strong> — tutup vektor serangan (patch, revoke creds, remove malware).</li>
+            <li><strong>Recovery</strong> — restore dari backup terverifikasi, harden sebelum live.</li>
+            <li><strong>Post-incident</strong> — postmortem, root cause analysis, update playbook.
+          </ol>
+          <p class="muted">Catatan: lakukan forensik jika data sensitif terlibat dan libatkan pihak hukum/forensik digital jika perlu.</p>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>7. Secure Coding Checklist (developer-friendly)</h2>
+          <ul>
+            <li>Gunakan prepared statements / parameterized queries.</li>
+            <li>Escape & encode output sesuai konteks (HTML, JS, URL).</li>
+            <li>Validasi server-side selalu (client-side untuk UX saja).</li>
+            <li>Hindari menulis credential di source code; pakai secret manager.</li>
+            <li>Gunakan Content Security Policy (CSP) dan secure headers.</li>
+            <li>Terapkan logging dengan context dan jangan log data sensitif seperti password/full credit card.</li>
+          </ul>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>8. Contoh non-berbahaya (simulasi edukasi)</h2>
+          <p class="muted">Berikut adalah snippet yang <em>menjelaskan</em> bagaimana XSS bekerja secara konsep — <strong>ini tidak boleh disalahgunakan</strong>.</p>
+          <pre>// Concept: user input muncul tanpa encoding -> dapat menginjeksi tag/script dalam halaman
+// BAD (concept):
+// &lt;div&gt;&lt;?= user_input ?&gt;&lt;/div&gt;
+
+// GOOD (concept):
+// &lt;div&gt;escapeHtml(user_input)&lt;/div&gt;
+
+// Gunakan library/framework yang otomatis melakukan escaping output.
+</pre>
+          <p class="muted">Untuk praktik aman gunakan sandboxed lab seperti TryHackMe/HackTheBox, atau environment lokal (Docker VM) — bukan pada server publik tanpa izin.</p>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>9. Etika, hukum & konsekuensi</h2>
+          <p class="muted">Melakukan deface atau akses tanpa izin melanggar hukum di banyak yurisdiksi. Konsekuensi: pidana, denda, civil liability, dan catatan kriminal. Jika ingin belajar: selalu minta izin tertulis atau gunakan platform pelatihan yang aman.</p>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h2>10. Jalur belajar & resources</h2>
+          <p class="muted">Arah belajar dari dasar hingga lanjutan:</p>
+          <ol>
+            <li>Dasar jaringan & OS (TCP/IP, HTTP, Linux)</li>
+            <li>Bahasa pemrograman (Python, JavaScript) dan web fundamentals (HTML/CSS/JS)</li>
+            <li>Belajar OWASP Top 10 dan secure coding</li>
+            <li>Practice di TryHackMe / Hack The Box / OverTheWire</li>
+            <li>Ikut bug bounty & kontribusi ke open-source security</li>
+            <li>Sertifikasi (eJPT, OSCP, CompTIA Security+)</li>
+          </ol>
+          <p class="muted">Jika mau, saya bisa buatkan modul pembelajaran interaktif atau quiz untuk tim Anda.</p>
+        </section>
+
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Quick checklist</h3>
+          <ul class="muted">
+            <li>Backup & tes recovery</li>
+            <li>Scan dependency</li>
+            <li>WAF aktif</li>
+            <li>MFA untuk admin</li>
+            <li>Review access logs</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Incident playbook (singkat)</h3>
+          <ol class="muted">
+            <li>Notify stakeholders</li>
+            <li>Preserve logs</li>
+            <li>Isolate & remediate</li>
+            <li>Restore & notify users jika perlu</li>
+          </ol>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Tooling & layanan (defensif)</h3>
+          <ul class="muted">
+            <li>WAF (Cloudflare, ModSecurity)</li>
+            <li>SIEM / Logging (ELK, Splunk)</li>
+            <li>Dependency scanner (Dependabot, Snyk)</li>
+            <li>Pentest & bug bounty (HackerOne, Bugcrowd)</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Ingin versi lain?</h3>
+          <div class="controls">
+            <button class="btn" onclick="request('warna')">Ganti tema</button>
+            <button class="btn" onclick="request('slide')">Bikin slide</button>
+            <button class="btn" onclick="request('pdf')">Versi PDF printable</button>
+            <button class="btn" onclick="request('sandbox')">Tambah simulasi aman</button>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>Materi edukasi — tidak menyediakan instruksi eksploitasi. Ingin saya tambahkan kuis, slide, atau versi bahasa Inggris?</footer>
+  </div>
+
+  <script>
+    function request(t){
+      const map = {
+        warna: 'Mau tema warna apa? (mis. merah, hijau, gelap terang)',
+        slide: 'Akan kubuat versi slide. Mau 10 slide atau 20 slide?',
+        pdf: 'Akan kubuat PDF printable — mau ukuran A4 atau Letter?',
+        sandbox: 'Akan tambah modul simulasi aman (lab lokal). Mau topik XSS atau SQLi (hanya simulasi)?'
+      };
+      alert(map[t]||'Minta edit');
+    }
+  </script>
+</body>
+</html>
