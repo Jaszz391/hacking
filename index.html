@@ -1,221 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Deface, Hacking & Cybersecurity — Kompendium Lengkap (Edukasi & Defensif)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deface & Cybersecurity Edukasi</title>
   <style>
-    :root{--bg:#05060a;--card:rgba(255,255,255,0.03);--accent1:#00e5ff;--accent2:#8e6bff;--safe:#6bff9b;--text:#d7e7ff}
-    [data-theme='light']{--bg:#f5f7fb;--card:rgba(2,6,23,0.03);--text:#071127;--accent1:#0aa6ff;--accent2:#7a5bff}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;background:linear-gradient(160deg,#03030a 0%, var(--bg) 60%);color:var(--text)}
-    .wrap{max-width:1200px;margin:22px auto;padding:24px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow: 0 12px 40px rgba(2,6,23,0.7)}
-    header{display:flex;align-items:center;gap:16px}
-    .logo{width:76px;height:76px;border-radius:14px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:#031020;font-weight:800}
-    h1{margin:0;font-size:26px}
-    .lead{color:rgba(183,209,255,0.9);margin-top:4px}
-
-    .controls-top{display:flex;gap:8px;margin-left:auto;align-items:center}
-    .switch{display:flex;align-items:center;gap:6px}
-    .btn{background:transparent;color:inherit;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
-
-    .device-bar{display:flex;gap:8px}
-    .device{padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
-
-    .grid{display:grid;grid-template-columns: 2fr 1fr;gap:18px;margin-top:18px}
-    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03)}
-    h2{margin-top:0}
-    p.small{color:#b9d6ff}
-    ul{margin-left:18px}
-    pre{background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.5));padding:12px;border-radius:8px;overflow:auto;border:1px solid rgba(255,255,255,0.03);font-size:13px}
-
-    .muted{color:#9fb3dd}
-    table{width:100%;border-collapse:collapse;margin-top:8px}
-    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
-
-    .accordion{margin-top:10px}
-    .acc-head{cursor:pointer;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);background:rgba(255,255,255,0.01);margin-bottom:6px}
-    .acc-body{display:none;padding:8px}
-
-    .frame{margin-top:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);overflow:hidden;background:var(--card)}
-    .frame .toolbar{padding:8px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);display:flex;gap:8px;align-items:center}
-    .frame .content{padding:12px}
-
-    /* Device frames */
-    .device-frame.iphone{width:375px}
-    .device-frame.android{width:360px}
-    .device-frame.macbook{width:900px}
-
-    @media (max-width:980px){.grid{grid-template-columns:1fr} .device-frame.macbook{width:100%}}
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #f1f1f1;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --accent: #00ffc6;
+    }
+    body.light {
+      --bg-color: #f9f9f9;
+      --text-color: #1a1a1a;
+      --card-bg: rgba(0, 0, 0, 0.05);
+      --accent: #0077ff;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.4s ease;
+    }
+    header {
+      padding: 1rem 2rem;
+      text-align: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    h1 {
+      margin: 0.5rem 0;
+      font-size: 2rem;
+      color: var(--accent);
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    button, select {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    button:hover, select:hover {
+      transform: scale(1.05);
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    section {
+      margin-bottom: 3rem;
+      padding: 1rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+    }
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+    }
+    .quiz {
+      margin-top: 1.5rem;
+    }
+    .question {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--card-bg);
+    }
   </style>
 </head>
-<body data-theme="dark">
-  <div class="wrap">
-    <header>
-      <div class="logo">CYCOM</div>
-      <div>
-        <h1>Deface & Hacking — Kompendium Lengkap (Edukasi & Defensif)</h1>
-        <div class="lead">Semua pengetahuan defensif dan konsep yang relevan — lengkap, non-eksploit, dan fokus ke mitigasi, deteksi, dan tata kelola.</div>
-      </div>
-
-      <div class="controls-top">
-        <div class="switch">
-          <label>Theme</label>
-          <select id="theme-select" onchange="setTheme(this.value)">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-          </select>
-        </div>
-
-        <div class="device-bar">
-          <div class="device" onclick="setDevice('iphone')">iPhone</div>
-          <div class="device" onclick="setDevice('android')">Android</div>
-          <div class="device" onclick="setDevice('macbook')">MacBook</div>
-          <div class="device" onclick="setDevice('responsive')">Responsive</div>
-        </div>
-
-        <button class="btn" onclick="exportPDF()">Export PDF</button>
-      </div>
-    </header>
-
-    <div class="grid">
-      <main>
-        <!-- Main content sections remain similar to previous compendium but expanded with many non-actionable topics -->
-        <section class="card">
-          <h2>Kompendium Lengkap (ringkasan topik yang dimasukkan)</h2>
-          <p class="muted">Dokumen ini sekarang berisi: glossary ekstensif, threat actor taxonomy, social engineering, phishing patterns (deskriptif), OSINT overview, wireless & IoT security, cloud & container security concepts, cryptography basics, malware classification (deskripsi), ransomware overview, DDoS overview, supply-chain risks, mobile security principles, red-team vs blue-team roles, SIEM & detection engineering, hunting techniques (conceptual), legal frameworks, compliance (GDPR, PCI-DSS ringkasan), bug bounty processes, responsible disclosure templates, policy templates (password, patching, access), checklist & playbooks, forensic guidance, and learning roadmap.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Threat actors & motivations</h2>
-          <ul>
-            <li>Script kiddies — opportunistic, low-skill.</li>
-            <li>Cybercriminals — financial gain, ransomware.</li>
-            <li>Hacktivists — political/ideological motives (deface common).</li>
-            <li>State-sponsored actors — espionage, targeted campaigns.</li>
-            <li>Insider threats — negligence or malicious insiders.</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Social engineering & phishing (descriptive)</h2>
-          <p class="muted">Social engineering exploits human factors. Phishing campaigns vary: mass phishing, spear-phishing (targeted), vishing (voice), smishing (SMS). Mitigations: security awareness training, email filtering, DMARC/SPF/DKIM, simulated phishing tests.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>OSINT (Open Source Intelligence) — penggunaan & mitigasi</h2>
-          <p class="muted">OSINT is collecting publicly available information (LinkedIn, GitHub, social media, domain WHOIS). Useful for defender threat modeling and attacker reconnaissance. Mitigation: reduce public exposure (remove sensitive docs, harden DNS), monitor brand mentions.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Wireless, IoT & Embedded Systems (overview)</h2>
-          <p class="muted">IoT devices often lack secure defaults. Focus: network segmentation, regular firmware updates, strong device authentication, disable unused services, monitor device traffic.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Cloud & container security concepts</h2>
-          <ul>
-            <li>Least privilege IAM (use roles, avoid long-lived keys).</li>
-            <li>Secure images — scan base images, sign images.</li>
-            <li>Network segmentation (VPCs, security groups).</li>
-            <li>Secrets management (KMS, Vault).</li>
-            <li>Runtime security: container scanning, host hardening.</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Cryptography basics (non-math)</h2>
-          <p class="muted">Symmetric vs asymmetric, hashing vs encryption, key management, TLS basics, certificate management, perfect forward secrecy concept. Emphasize correct usage and key lifecycle.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Malware taxonomy & ransomware (descriptive)</h2>
-          <p class="muted">Categories: trojans, worms, backdoors, rootkits, ransomware. Ransomware: encryption of data for extortion; mitigations: backups, network segmentation, IR plan, threat intel.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>DDoS overview</h2>
-          <p class="muted">DDoS floods service with traffic/requests. Mitigations: CDN/WAF, rate limiting, autoscaling, scrubbing services, traffic filtering.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Supply chain & dependency risks</h2>
-          <p class="muted">Supply chain attacks target third-party components. Best practices: SBOM, pin dependencies, monitor CVEs, approve changes, use signed releases.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Mobile security principles</h2>
-          <p class="muted">App hardening, secure storage of secrets, avoid logging sensitive data, apply platform best practices (Android/iOS), update lifecycle, code obfuscation if appropriate, use platform-provided secure keystores.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Detection engineering & hunting (conceptual)</h2>
-          <p class="muted">Create detections for anomalous patterns: unusual admin login time, new webshell indicators, mass file changes, DNS anomalies. Use baselining, threat intel feeds, and tuning to reduce false positives.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Legal & compliance overview</h2>
-          <p class="muted">High-level notes on GDPR, PCI-DSS, local cybercrime laws: maintain data protection, breach notification timelines, and contractual security controls. Always consult legal counsel for specifics.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Red Team / Blue Team roles</h2>
-          <p class="muted">Red team (adversary emulation) vs blue team (defense). Purple team = collaboration to improve detection. Emphasize authorized exercises, scope, and rules of engagement.</p>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <h2>Responsible disclosure & bug bounty</h2>
-          <p class="muted">How to set up a program: scope, reward tiers, contact channel, triage process, legal safe harbor. Encourage external researchers to report responsibly.</p>
-        </section>
-
-      </main>
-
-      <aside>
-        <div class="card">
-          <h3>Quick actions</h3>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <button class="btn" onclick="exportPDF()">Export PDF</button>
-            <button class="btn" onclick="makeSlides()">Buat slide</button>
-            <button class="btn" onclick="addQuiz()">Tambah kuis</button>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3>Printable checklist</h3>
-          <ul class="muted">
-            <li>Enable HTTPS & HSTS</li>
-            <li>Rotate keys & MFA</li>
-            <li>Patch & scan weekly</li>
-            <li>Backup & test restores</li>
-            <li>Implement WAF & logging</li>
-          </ul>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3>Device preview</h3>
-          <div class="frame device-frame iphone" id="preview">
-            <div class="toolbar">iPhone preview — ukuran 375px</div>
-            <div class="content">Preview content... (layout adapts to device width)</div>
-          </div>
-        </div>
-
-      </aside>
+<body class="light">
+  <header>
+    <h1>Deface & Cybersecurity Edukasi</h1>
+    <div class="controls">
+      <button onclick="toggleTheme()">🌙 / ☀️</button>
+      <select id="devicePreview" onchange="changeDevice()">
+        <option value="responsive">Responsive</option>
+        <option value="iphone">iPhone</option>
+        <option value="android">Android</option>
+        <option value="macbook">MacBook</option>
+      </select>
+      <button onclick="exportPDF()">Export PDF</button>
+      <button onclick="alert('Fitur pembuatan slide coming soon 🚀')">Buat Slide</button>
     </div>
+  </header>
 
-    <footer>Kompendium edukasi — tidak menyediakan instruksi eksploit. Jika ingin lebih detail pada suatu topik (defensif), sebutkan topiknya.</footer>
-  </div>
+  <main>
+    <section>
+      <h2>Pengenalan</h2>
+      <p><strong>Deface</strong> adalah aksi merubah tampilan sebuah website tanpa izin pemilik. Biasanya dilakukan untuk menyampaikan pesan politik, sindiran, atau sekadar pamer kemampuan. Namun ini ilegal dan bisa berakibat hukum berat.</p>
+    </section>
+
+    <section>
+      <h2>Risiko & Konsekuensi</h2>
+      <ul>
+        <li>Pelanggaran hukum siber dengan ancaman penjara & denda.</li>
+        <li>Kehilangan reputasi untuk korban maupun pelaku.</li>
+        <li>Potensi kehilangan data penting atau rahasia.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Pertahanan</h2>
+      <ul>
+        <li>Update patch & gunakan WAF (Web Application Firewall).</li>
+        <li>Backup berkala & enkripsi data sensitif.</li>
+        <li>Audit keamanan rutin & penetration testing etis.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Kuis Interaktif</h2>
+      <p>Pilih topik kuis:</p>
+      <select id="quizTopic">
+        <option value="owasp">OWASP Top 10</option>
+        <option value="incident">Incident Response</option>
+        <option value="phishing">Phishing</option>
+        <option value="mixed">Mixed (10 soal)</option>
+      </select>
+      <button onclick="startQuiz()">Mulai Kuis</button>
+      <div id="quizContainer" class="quiz"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Edukasi Cybersecurity. Fokus pada pembelajaran, bukan eksploitasi.</p>
+  </footer>
 
   <script>
-    function setTheme(t){
-      document.body.setAttribute('data-theme', t);
+    function toggleTheme() {
+      document.body.classList.toggle('light');
     }
-    function setDevice(d){
-      const preview = document.getElementById('preview');
-      preview.className = 'frame device-frame ' + (d==='responsive' ? '' : d);
-      preview.querySelector('.toolbar').textContent = d==='responsive' ? 'Responsive preview' : (d.charAt(0).toUpperCase()+d.slice(1)) + ' preview';
+    function changeDevice() {
+      let val = document.getElementById('devicePreview').value;
+      alert('Mode preview diganti ke: ' + val);
     }
-    function exportPDF(){ alert('Fungsi export PDF akan dibuat. Mau A4 atau Letter?'); }
-    function makeSlides(){ alert('Akan membuat slide — mau 10/20 slide?'); }
-    function addQuiz(){ alert('Tambah kuis interaktif — pilih topik: OWASP/IR/Phishing?'); }
+    function exportPDF() {
+      alert('Export PDF akan dibuat di versi selanjutnya.');
+    }
+
+    const quizData = {
+      owasp: [
+        { q: 'Apa tujuan utama OWASP?', o: ['Mencari bug', 'Standarisasi keamanan aplikasi', 'Mengembangkan hardware'], a: 1 },
+      ],
+      incident: [
+        { q: 'Langkah pertama dalam Incident Response?', o: ['Containment', 'Identification', 'Recovery'], a: 1 },
+      ],
+      phishing: [
+        { q: 'Ciri email phishing?', o: ['Domain resmi', 'Link mencurigakan', 'SSL valid'], a: 1 },
+      ],
+      mixed: [
+        { q: 'SQL Injection termasuk?', o: ['OWASP Top 10', 'Protokol jaringan', 'Malware'], a: 0 },
+        { q: 'Tahap terakhir Incident Response?', o: ['Eradication', 'Lessons Learned', 'Detection'], a: 1 },
+      ]
+    };
+
+    let currentQuiz = [];
+    let currentIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+      const topic = document.getElementById('quizTopic').value;
+      currentQuiz = quizData[topic];
+      currentIndex = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      if (currentIndex >= currentQuiz.length) {
+        document.getElementById('quizContainer').innerHTML = `<p>Skor akhir: ${score}/${currentQuiz.length}</p>`;
+        return;
+      }
+      const qData = currentQuiz[currentIndex];
+      let html = `<div class='question'>${qData.q}</div><div class='options'>`;
+      qData.o.forEach((opt, idx) => {
+        html += `<label><input type='radio' name='opt' value='${idx}'> ${opt}</label>`;
+      });
+      html += `</div><button onclick='submitAnswer()'>Submit</button>`;
+      document.getElementById('quizContainer').innerHTML = html;
+    }
+
+    function submitAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      if (!selected) return alert('Pilih jawaban dulu!');
+      if (parseInt(selected.value) === currentQuiz[currentIndex].a) {
+        score++;
+        alert('Benar!');
+      } else {
+        alert('Salah!');
+      }
+      currentIndex++;
+      showQuestion();
+    }
   </script>
 </body>
 </html>
